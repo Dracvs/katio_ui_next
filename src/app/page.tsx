@@ -1,3 +1,30 @@
+import { BookService } from "./lib/book-service";
+
+const _bookService = new BookService();
+
+export default async function Page(){
+    let books = await _bookService.getAllBooks();
+
+    return (
+        <div className="mx-auto">
+            <h1>All of my books on Katio</h1>
+            <hr/>
+            <div className="flex flex-wrap">
+                {
+                    books.map((book) => (
+                        <div className="card w-96 bg-base-100 shadow-xl m-1.5" key={book.id}>
+                            <div className="card-body">
+                                <h2 className="card-title">{book.name}</h2>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    );
+}
+
+/*
 import Image from "next/image";
 
 export default function Home() {
@@ -111,3 +138,4 @@ export default function Home() {
     </main>
   );
 }
+*/
